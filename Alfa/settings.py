@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App_1'
+    'App_1',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,25 @@ TEMPLATES = [
         },
     },
 ]
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+
+CLOUDINARY = {
+    'cloud_name': 'dmjacacue',  # Your Cloudinary cloud name
+    'api_key': '141747915688792',  # Your Cloudinary API key
+    'api_secret': 'fzsH4rnykZAbMBDH8-Vi4jYDIgA'  # Your Cloudinary API secret
+}
+
+# Configure Cloudinary using the dictionary values
+cloudinary.config(
+    cloud_name=CLOUDINARY['cloud_name'],
+    api_key=CLOUDINARY['api_key'],
+    api_secret=CLOUDINARY['api_secret']
+)
 
 WSGI_APPLICATION = 'Alfa.wsgi.application'
 
@@ -133,6 +154,8 @@ STATIC_ROOT = BASE_DIR / "static"
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Default primary key field type

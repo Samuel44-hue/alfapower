@@ -6,8 +6,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 def Home(request):
-    list = Project.objects.all()
-    return render(request,"home.html",{'project' : list})
+    list = Project.objects.all().order_by('-id')  # Order projects by latest first
+    return render(request, "home.html", {'project': list})
 
 def Upload_Product(request):
     if request.method == 'POST':
